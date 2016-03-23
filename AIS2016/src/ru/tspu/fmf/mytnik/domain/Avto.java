@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Avto {
     private Integer id;
-    private String regNomer;
+    private String nomer;
     private String nomerKyzova;
     private String nomerDvigla;
     private String nomerTP;
@@ -14,5 +14,5 @@ public class Avto {
     private String TO;
     private Date dateTO;
     private String opisanie;
-    
+
 }
