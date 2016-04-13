@@ -14,5 +14,7 @@ public class Avto {
     private String TO;
     private Date dateTO;
     private String opisanie;
+    private Integer idMarka;
+    private Integer idVladelets;
 
 }

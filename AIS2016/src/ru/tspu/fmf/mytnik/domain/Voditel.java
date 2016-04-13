@@ -8,5 +8,6 @@ public class Voditel {
     private Date vydacha;
     private String kategiria;
     private String opisanie;
+    private Integer idPerson;
     
 }

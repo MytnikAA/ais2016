@@ -9,4 +9,5 @@ public class GTA {
     private String obstoiatelstva;
     private String otmetkaNahodki;
     private Date dateNahodki;
+    private Integer idAvto;
 }

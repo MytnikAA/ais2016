@@ -6,7 +6,7 @@ public class Marka {
     private  Integer id;
     private String name;
     private String firma;
-    private String strana;
+    private String markaCol;
     private String haracteristiki;
     private String kategoria;
     private String opisanie;

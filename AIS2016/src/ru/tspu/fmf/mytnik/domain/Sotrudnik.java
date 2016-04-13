@@ -1,9 +1,8 @@
 package ru.tspu.fmf.mytnik.domain;
 
-import java.util.List;
-
-public class Sotrudnik extends Person{
+public class Sotrudnik{
     private Integer id;
-    private List<Dolzhnost> dolzhnostList;
-    private Zvanie zvanie;
+    private Integer idZvanie;
+    private Integer idDolzhnost;
+    private Integer idPerson;
 }
