@@ -20,26 +20,26 @@ public class MySQLConnector {
         this.dbSettings = dbSettings;
     }
 
-    public synchronized Connection getDBConnect(String host) {
+    public synchronized Connection getDBConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MySQLConnector.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+            return null;
         }
         try {
-            host = dbSettings.getProperty("db.host");
+            String host = dbSettings.getProperty("db.host");
             String port = dbSettings.getProperty("db.port", "3306");
             String name = dbSettings.getProperty("db.name");
             String user = dbSettings.getProperty("db.user");
             String password = dbSettings.getProperty("db.password");
             connection = DriverManager
-                    .getConnection("jdbc:mysql://" + host + ":" + port + "/" + name, user, password);
+                    .getConnection("jdbc:mysql://" + host + ":" + 
+                            port + "/" + name, user, password);
         } catch (SQLException e) {
-            System.out.println("Connection Failed! Check output console");
-            Logger.getLogger(MySQLConnector.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println(e.getMessage());
             return null;
         }
         return connection;
     }
-
 }
