@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -59,6 +61,7 @@ public class AvtoDAO implements DAOInterface<Avto> {
             statement.setInt(1, value.getIdMarka());
             statement.setInt(2, value.getIdVladelets());
             statement.setString(3, value.getNomer());
+            statement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,22 +69,90 @@ public class AvtoDAO implements DAOInterface<Avto> {
 
     @Override
     public void delete(Avto value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "DELETE FROM `student-gibdd`.`avto`"
+                + "WHERE ?;";
+        PreparedStatement st;
+        try {
+            st = con.prepareStatement(sql);
+            st.setInt(1, value.getId());
+            st.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void update(Avto value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "UPDATE `student-gibdd`.`avto`"
+                + "SET"
+                + "`id` = ?,"
+                + "`id_marka` = ?,"
+                + "`id_vladelets` = ?,"
+                + "`nomer` = ?,"
+                + "`nomerKyzova` = ?,"
+                + "`nomerDvigla` = ?,"
+                + "`nomerTP` = ?,"
+                + "`vypusk` = ?,"
+                + "`reg` = ?,"
+                + "`color` = ?,"
+                + "`TO` = ?,"
+                + "`dateTO` = ?,"
+                + "`avtocol` = ?"
+                + "WHERE `id` = ?";
+        PreparedStatement statement;
+        try {
+            statement = con.prepareStatement(sql);
+            statement.setInt(1, value.getIdMarka());
+            statement.setInt(2, value.getIdVladelets());
+            statement.setString(3, value.getNomer());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public Avto findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Avto avto = new Avto();
+        String sql = "SELECT * FROM `student-gibdd`.`avto`"
+                + "WHERE id = ?";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                avto.setId(rs.getInt("id"));
+                avto.setIdMarka(rs.getInt("id_marka"));
+                avto.setIdVladelets(rs.getInt("id_vladelets"));
+                avto.setNomer(rs.getString("nomer"));
+//              // и так далее
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return avto;
     }
 
     @Override
     public List<Avto> findById() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Avto> result = new ArrayList<>();
+        String sql = "SELECT * FROM `student-gibdd`.`avto`";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Avto avto = new Avto();
+                avto.setId(rs.getInt("id"));
+                avto.setIdMarka(rs.getInt("id_marka"));
+                avto.setIdVladelets(rs.getInt("id_vladelets"));
+                avto.setNomer(rs.getString("nomer"));
+//              // и так далее
+                result.add(avto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 
 }
