@@ -70,7 +70,7 @@ public class AvtoDAO implements DAOInterface<Avto> {
     @Override
     public void delete(Avto value) {
         String sql = "DELETE FROM `student-gibdd`.`avto`"
-                + "WHERE ?;";
+                + "WHERE id=?;";
         PreparedStatement st;
         try {
             st = con.prepareStatement(sql);
