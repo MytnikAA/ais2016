@@ -57,7 +57,8 @@ public class AvtoDAO implements DAOInterface<Avto> {
         try {
             statement = con.prepareStatement(sql);
             statement.setInt(1, value.getIdMarka());
-            statement.setString(2, value.getNomer());
+            statement.setInt(2, value.getIdVladelets());
+            statement.setString(3, value.getNomer());
         } catch (SQLException ex) {
             Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
