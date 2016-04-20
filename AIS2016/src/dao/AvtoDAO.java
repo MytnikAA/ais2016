@@ -28,8 +28,7 @@ public class AvtoDAO implements DAOInterface<Avto> {
     @Override
     public void persist(Avto value) {
         String sql = "INSERT INTO `student-gibdd`.`avto`"
-                + "(`id`,"
-                + "`id_marka`,"
+                + "(`id_marka`,"
                 + "`id_vladelets`,"
                 + "`nomer`,"
                 + "`nomerKyzova`,"
@@ -53,13 +52,14 @@ public class AvtoDAO implements DAOInterface<Avto> {
                 + "?,"
                 + "?,"
                 + "?,"
-                + "?,"
                 + "?);";
         PreparedStatement statement;
         try {
             statement = con.prepareStatement(sql);
+            statement.setInt(1, value.getIdMarka());
+            statement.setString(2, value.getNomer());
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());;
+            Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
