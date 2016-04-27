@@ -65,7 +65,7 @@ public class AvtoDAO implements DAOInterface<Avto> {
             statement.setString(4, value.getNomerKyzova());
             statement.setString(5, value.getNomerDvigla());
             statement.setString(6, value.getNomerTP());
-            java.sql.Date date = new Date(value.getVypusk().getTime());
+            java.sql.Date date = new java.sql.Date(value.getVypusk().getTime());
             statement.setDate(7, date);
             statement.execute();
         } catch (SQLException ex) {
