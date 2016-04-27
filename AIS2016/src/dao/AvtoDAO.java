@@ -97,7 +97,6 @@ public class AvtoDAO implements DAOInterface<Avto> {
                 + "`color` = ?,"
                 + "`TO` = ?,"
                 + "`dateTO` = ?,"
-                + "`avtocol` = ?"
                 + "WHERE `id` = ?";
         PreparedStatement statement;
         try {
@@ -125,7 +124,14 @@ public class AvtoDAO implements DAOInterface<Avto> {
                 avto.setIdMarka(rs.getInt("id_marka"));
                 avto.setIdVladelets(rs.getInt("id_vladelets"));
                 avto.setNomer(rs.getString("nomer"));
-//              // и так далее
+                avto.setNomerKyzova(rs.getString("nomerKyzova"));
+                avto.setNomerDvigla(rs.getString("nomerDvigla"));
+                avto.setNomerTP(rs.getString("nomerTP"));
+                avto.setVypusk(rs.getDate("vypusk"));
+                avto.setReg(rs.getDate("reg"));
+                avto.setColor(rs.getString("color"));
+                avto.setTO(rs.getString("TO"));
+                avto.setDateTO(rs.getDate("dateTO"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
