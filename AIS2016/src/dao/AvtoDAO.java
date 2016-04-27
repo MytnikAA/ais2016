@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,6 +62,11 @@ public class AvtoDAO implements DAOInterface<Avto> {
             statement.setInt(1, value.getIdMarka());
             statement.setInt(2, value.getIdVladelets());
             statement.setString(3, value.getNomer());
+            statement.setString(4, value.getNomerKyzova());
+            statement.setString(5, value.getNomerDvigla());
+            statement.setString(6, value.getNomerTP());
+            java.sql.Date date = new Date(value.getVypusk().getTime());
+            statement.setDate(7, date);
             statement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -152,7 +158,14 @@ public class AvtoDAO implements DAOInterface<Avto> {
                 avto.setIdMarka(rs.getInt("id_marka"));
                 avto.setIdVladelets(rs.getInt("id_vladelets"));
                 avto.setNomer(rs.getString("nomer"));
-//              // и так далее
+                avto.setNomerKyzova(rs.getString("nomerKyzova"));
+                avto.setNomerDvigla(rs.getString("nomerDvigla"));
+                avto.setNomerTP(rs.getString("nomerTP"));
+                avto.setVypusk(rs.getDate("vypusk"));
+                avto.setReg(rs.getDate("reg"));
+                avto.setColor(rs.getString("color"));
+                avto.setTO(rs.getString("TO"));
+                avto.setDateTO(rs.getDate("dateTO"));
                 result.add(avto);
             }
         } catch (SQLException ex) {
