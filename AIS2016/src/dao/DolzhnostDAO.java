@@ -1,8 +1,15 @@
 package dao;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ru.tspu.fmf.mytnik.db.MySQLConnector;
 import ru.tspu.fmf.mytnik.domain.Dolzhnost;
 
@@ -33,26 +40,83 @@ public class DolzhnostDAO implements DAOInterface<Dolzhnost> {
                 + "?,"
                 + "?,"
                 + "?);";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, value.getName());
+            st.setInt(2, value.getOklad());
+            st.setString(3, value.getObiazanost());
+            st.setString(4, value.getTrebovanija());
+            st.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DolzhnostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void delete(Dolzhnost value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "DELETE FROM `student-gibdd`.`dolzhnost`" +
+"WHERE id = ?;";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, value.getId());
+            st.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DolzhnostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @Override
     public void update(Dolzhnost value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DolzhnostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public Dolzhnost findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Dolzhnost d = new Dolzhnost();
+        String sql = "";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                d.setId(rs.getInt("id"));
+                d.setName(rs.getString("name"));
+                d.setOklad(rs.getInt("oklad"));
+                d.setObiazanost(rs.getString("obazannost"));
+                d.setTrebovanija(rs.getString("trebovania"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DolzhnostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return d;
     }
 
     @Override
     public List<Dolzhnost> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Dolzhnost> dolzhnosti = new VirtualFlow.ArrayLinkedList<>();
+        String sql = "SELECT * FROM dolzhnost";
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Dolzhnost d = new Dolzhnost();
+                d.setId(rs.getInt("id"));
+                d.setName(rs.getString("name"));
+                d.setOklad(rs.getInt("oklad"));
+                d.setObiazanost(rs.getString("obazannost"));
+                d.setTrebovanija(rs.getString("trebovania"));
+                dolzhnosti.add(d);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DolzhnostDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dolzhnosti;
     }
 
 }
