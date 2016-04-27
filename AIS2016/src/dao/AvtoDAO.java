@@ -134,7 +134,7 @@ public class AvtoDAO implements DAOInterface<Avto> {
     }
 
     @Override
-    public List<Avto> findById() {
+    public List<Avto> findAll() {
         List<Avto> result = new ArrayList<>();
         String sql = "SELECT * FROM `student-gibdd`.`avto`";
         try {

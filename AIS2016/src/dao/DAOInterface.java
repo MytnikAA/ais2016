@@ -8,5 +8,5 @@ public interface DAOInterface<T> {
     void delete(T value);
     void update(T value);
     T findById(Integer id);
-    List<T> findById();
+    List<T> findAll();
 }
