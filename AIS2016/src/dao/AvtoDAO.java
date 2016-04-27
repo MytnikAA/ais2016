@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,11 +40,9 @@ public class AvtoDAO implements DAOInterface<Avto> {
                 + "`reg`,"
                 + "`color`,"
                 + "`TO`,"
-                + "`dateTO`,"
-                + "`avtocol`)"
+                + "`dateTO`)"
                 + "VALUES"
                 + "(?,"
-                + "?,"
                 + "?,"
                 + "?,"
                 + "?,"
@@ -67,6 +64,12 @@ public class AvtoDAO implements DAOInterface<Avto> {
             statement.setString(6, value.getNomerTP());
             java.sql.Date date = new java.sql.Date(value.getVypusk().getTime());
             statement.setDate(7, date);
+            date = new java.sql.Date(value.getReg().getTime());
+            statement.setDate(8, date);
+            statement.setString(9, value.getColor());
+            statement.setString(10, value.getTO());
+            date = new java.sql.Date(value.getDateTO().getTime());
+            statement.setDate(10, date);
             statement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,7 +94,6 @@ public class AvtoDAO implements DAOInterface<Avto> {
     public void update(Avto value) {
         String sql = "UPDATE `student-gibdd`.`avto`"
                 + "SET"
-                + "`id` = ?,"
                 + "`id_marka` = ?,"
                 + "`id_vladelets` = ?,"
                 + "`nomer` = ?,"
@@ -110,6 +112,17 @@ public class AvtoDAO implements DAOInterface<Avto> {
             statement.setInt(1, value.getIdMarka());
             statement.setInt(2, value.getIdVladelets());
             statement.setString(3, value.getNomer());
+            statement.setString(4, value.getNomerKyzova());
+            statement.setString(5, value.getNomerDvigla());
+            statement.setString(6, value.getNomerTP());
+            java.sql.Date date = new java.sql.Date(value.getVypusk().getTime());
+            statement.setDate(7, date);
+            date = new java.sql.Date(value.getReg().getTime());
+            statement.setDate(8, date);
+            statement.setString(9, value.getColor());
+            statement.setString(10, value.getTO());
+            date = new java.sql.Date(value.getDateTO().getTime());
+            statement.setDate(10, date);
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AvtoDAO.class.getName()).log(Level.SEVERE, null, ex);
