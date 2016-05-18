@@ -1,11 +1,11 @@
 package ru.mytnik.dao;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -99,7 +99,7 @@ public class DolzhnostDAO implements DAOInterface<Dolzhnost> {
 
     @Override
     public List<Dolzhnost> findAll() {
-        List<Dolzhnost> dolzhnosti = new VirtualFlow.ArrayLinkedList<>();
+        List<Dolzhnost> dolzhnosti = new ArrayList<>();
         String sql = "SELECT * FROM dolzhnost";
         try {
             Statement st = con.createStatement();
