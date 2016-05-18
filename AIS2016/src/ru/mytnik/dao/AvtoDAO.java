@@ -6,25 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ru.mytnik.db.MySQLConnector;
 import ru.mytnik.domain.Avto;
 
 public class AvtoDAO implements DAOInterface<Avto> {
 
     private Connection con;
 
-    public AvtoDAO() {
-        MySQLConnector connector = new MySQLConnector();
-        Properties dbSettings = new Properties();
-        dbSettings.setProperty("db.host", "46.101.181.249");
-        dbSettings.setProperty("db.name", "student-gibdd");
-        dbSettings.setProperty("db.user", "std");
-        dbSettings.setProperty("db.password", "std123");
-        connector.setDbSettings(dbSettings);
-        con = connector.getDBConnect();
+    public AvtoDAO(Connection con) {
+        this.con = con;
     }
 
     @Override

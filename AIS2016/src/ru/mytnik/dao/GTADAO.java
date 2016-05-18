@@ -8,25 +8,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ru.mytnik.db.MySQLConnector;
 import ru.mytnik.domain.GTA;
 
 public class GTADAO implements DAOInterface<GTA> {
 
     private Connection con;
 
-    public GTADAO() {
-        MySQLConnector connector = new MySQLConnector();
-        Properties dbSettings = new Properties();
-        dbSettings.setProperty("db.host", "46.101.181.249");
-        dbSettings.setProperty("db.name", "student-gibdd");
-        dbSettings.setProperty("db.user", "std");
-        dbSettings.setProperty("db.password", "std123");
-        connector.setDbSettings(dbSettings);
-        con = connector.getDBConnect();
+    public GTADAO(Connection con) {
+        this.con = con;
     }
 
     @Override
