@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Подключатель к СУБД MySQL
@@ -20,6 +18,10 @@ public class MySQLConnector {
         this.dbSettings = dbSettings;
     }
 
+    public Properties getDbSettings() {
+        return dbSettings;
+    }
+    
     public synchronized Connection getDBConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
