@@ -1,4 +1,4 @@
-package ru.tspu.fmf.mytnik.domain;
+package ru.mytnik.domain;
 
 public class Sotrudnik{
     private Integer id;

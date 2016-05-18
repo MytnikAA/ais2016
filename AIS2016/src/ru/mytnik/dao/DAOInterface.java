@@ -1,4 +1,4 @@
-package dao;
+package ru.mytnik.dao;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.tspu.fmf.mytnik.db;
+package ru.mytnik.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package dao;
+package ru.mytnik.dao;
 
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ru.tspu.fmf.mytnik.db.MySQLConnector;
-import ru.tspu.fmf.mytnik.domain.Dolzhnost;
+import ru.mytnik.db.MySQLConnector;
+import ru.mytnik.domain.Dolzhnost;
 
 public class DolzhnostDAO implements DAOInterface<Dolzhnost> {
 

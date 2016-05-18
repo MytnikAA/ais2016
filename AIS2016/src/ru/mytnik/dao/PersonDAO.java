@@ -1,4 +1,4 @@
-package dao;
+package ru.mytnik.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ru.tspu.fmf.mytnik.db.MySQLConnector;
-import ru.tspu.fmf.mytnik.domain.Person;
+import ru.mytnik.db.MySQLConnector;
+import ru.mytnik.domain.Person;
 
 public class PersonDAO implements DAOInterface<Person> {
 
