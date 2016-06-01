@@ -1,31 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ru.mytnik.gui;
 
 import java.util.ArrayList;
 import org.jdesktop.observablecollections.ObservableCollections;
 import org.jdesktop.observablecollections.ObservableList;
+import ru.mytnik.dao.DAOFabric;
+import ru.mytnik.dao.ZvanieDAO;
 import ru.mytnik.domain.Zvanie;
 
-/**
- *
- * @author Student
- */
 public class ZvanieJFrame extends javax.swing.JFrame {
-    
+
     private ObservableList<Zvanie> zvanies;
     private Zvanie selected;
+    private ZvanieDAO zvanieDAO;
+
     /**
      * Creates new form ZvanieJFrame
      */
     public ZvanieJFrame() {
-        zvanies = 
-                ObservableCollections.
-                        observableList(
-                                new ArrayList<Zvanie>());
+        zvanieDAO = (ZvanieDAO) DAOFabric.
+                getInstance(Zvanie.class);
+        zvanies
+                = ObservableCollections.
+                observableList(
+                        new ArrayList<Zvanie>());
         initComponents();
     }
 
@@ -44,8 +41,6 @@ public class ZvanieJFrame extends javax.swing.JFrame {
     public void setZvanies(ObservableList<Zvanie> zvanies) {
         this.zvanies = zvanies;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,6 +101,11 @@ public class ZvanieJFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextArea2);
 
         jButton1.setText("Сохранить");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Удалить");
 
@@ -197,6 +197,10 @@ public class ZvanieJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
